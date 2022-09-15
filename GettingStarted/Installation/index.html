@@ -17,7 +17,7 @@
     
     
       
-        <title>Release Notes - Python interface for SELF</title>
+        <title>Installation - Python interface for SELF</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#release-notes" class="md-skip">
+        <a href="#installation" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Release Notes
+              Installation
             
           </span>
         </div>
@@ -213,12 +213,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -241,7 +243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GettingStarted/QuickStart/" class="md-nav__link">
+      <a href="../QuickStart/" class="md-nav__link">
         Quick Start
       </a>
     </li>
@@ -253,11 +255,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../GettingStarted/Installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Installation
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-pyself-from-pypi-index" class="md-nav__link">
+    Install pyself from pypi index
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-experimental-version-of-pyself" class="md-nav__link">
+    Install experimental version of pySELF
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -275,14 +325,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -303,21 +351,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../About/ReleaseNotes/" class="md-nav__link">
         Release Notes
       </a>
-      
     </li>
   
 
@@ -329,7 +367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../RoadMap/" class="md-nav__link">
+      <a href="../../About/RoadMap/" class="md-nav__link">
         Road Map
       </a>
     </li>
@@ -363,6 +401,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-pyself-from-pypi-index" class="md-nav__link">
+    Install pyself from pypi index
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-experimental-version-of-pyself" class="md-nav__link">
+    Install experimental version of pySELF
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -375,15 +435,25 @@
                 
                   
 
-  <a href="https://github.com/fluidnumerics/pyself/edit/main/docs/About/ReleaseNotes.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/fluidnumerics/pyself/edit/main/docs/GettingStarted/Installation.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="release-notes">Release Notes</h1>
-<h1 id="version-000">Version 0.0.0</h1>
-<p>SELF-Py is currently in its infancy and provides the ability to read and write SELF model and mesh files. Current interactions with SELF is mediated through these files. This gives you the opportunity to handle pre and post-processing activities in Python. </p>
+<h1 id="installation">Installation</h1>
+<h2 id="install-pyself-from-pypi-index">Install pyself from pypi index</h2>
+<p>If you'd like to obtain a tagged release version of pySELF (recommended), pySELF can be installed using <code>pip</code>.</p>
+<pre><code>pip install pyself==0.0.0
+</code></pre>
+<h2 id="install-experimental-version-of-pyself">Install experimental version of pySELF</h2>
+<p>If you'd like to install a more experimental version of pySELF, you can clone the pySELF repository to your workstation and install with <code>pip</code>.</p>
+<pre><code>git clone https://github.com/fluidnumerics/pyself ~/pyself
+git checkout &lt;branch&gt;
+cd ~/pyself
+pip install --user . --upgrade
+</code></pre>
+<p>In the above example, you can change <code>&lt;branch&gt;</code> to the desired branch you want to experiment with.</p>
 
 
 
@@ -404,7 +474,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../../GettingStarted/Installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
+        <a href="../QuickStart/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick Start" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -413,20 +483,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Installation
+              Quick Start
             </div>
           </div>
         </a>
       
       
         
-        <a href="../RoadMap/" class="md-footer__link md-footer__link--next" aria-label="Next: Road Map" rel="next">
+        <a href="../../About/ReleaseNotes/" class="md-footer__link md-footer__link--next" aria-label="Next: Release Notes" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Road Map
+              Release Notes
             </div>
           </div>
           <div class="md-footer__button md-icon">
