@@ -283,6 +283,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#read-in-self-data-from-a-file" class="md-nav__link">
+    Read in SELF data from a file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-model-data" class="md-nav__link">
+    Working with model data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-mesh-geometry-and-interpolant-data" class="md-nav__link">
+    Working with mesh, geometry, and interpolant data
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -393,6 +414,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#read-in-self-data-from-a-file" class="md-nav__link">
+    Read in SELF data from a file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-model-data" class="md-nav__link">
+    Working with model data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-mesh-geometry-and-interpolant-data" class="md-nav__link">
+    Working with mesh, geometry, and interpolant data
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -417,6 +459,51 @@
 <h2 id="install-pyself">Install pyself</h2>
 <p>pySELF can be installed using pip.</p>
 <pre><code>pip install pyself==0.0.0
+</code></pre>
+<h2 id="read-in-self-data-from-a-file">Read in SELF data from a file</h2>
+<p>Suppose that you have run a simulation with SELF using the <code>Model2D</code> class or one of its children (e.g. <code>LinearShallowWater2D</code>). The simulation has generated a set of <code>solution.*.h5</code> files. In the scenario described here, we're interested in loading in the contents of a file called <code>solution.example.h5</code> in the current working directory.</p>
+<pre><code>#!/usr/bin/env python
+
+import self.model2d as model2d
+
+
+# Initialize your model
+model = model2d.model()
+
+# Load in the model data from file
+model.load('solution.example.h5')
+</code></pre>
+<h2 id="working-with-model-data">Working with model data</h2>
+<p>The model class in pyself provides many of the same attributes as the equivalent class in SELF.</p>
+<ul>
+<li><code>solution</code> - The solution array at element interior (quadrature) points</li>
+<li><code>solutionGradient</code> - The gradient of the solution at element interior (quadrature) points</li>
+<li><code>flux</code> - The conservative flux vector at element interior (quadrature) points</li>
+<li><code>fluxDivergence</code> - The divergence of the flux vector at element interior (quadrature) points</li>
+</ul>
+<p>Each of these attributes are stored as <a href="https://docs.dask.org/en/stable/array.html">Dask arrays</a>. The data stored in these attributes can be accessed in the same way as you would numpy arrays.</p>
+<p>The dimension ordering that is used for these arrays (in 2-D) is as follows: </p>
+<ol>
+<li>Element dimension</li>
+<li>Variable dimension</li>
+<li>Quadrature dimension (second computational direction)</li>
+<li>Quadrature dimension (first computational direction)</li>
+<li>(Optional) Physical Vector direction</li>
+</ol>
+<p>For example,</p>
+<pre><code>solutionData = model.solution[iel,ivar,:,:]
+</code></pre>
+<p>stores the <code>ivar</code>-th solution variable within the <code>iel</code>-th element in <code>solutionData</code>.</p>
+<h2 id="working-with-mesh-geometry-and-interpolant-data">Working with mesh, geometry, and interpolant data</h2>
+<p>Additionally, the model class has <code>mesh</code> and <code>geometry</code> objects as attributes. In version <code>0.0.0</code> (the current version), the <code>mesh</code> object is not filled in; this means that you currently don't have access to connectivity information. The <code>geometry</code> class, on the other hand, contains the following attributes :</p>
+<ul>
+<li><code>interp</code> - The Lagrange interpolant object that defines coordinates and operators in computational space for the geometry and model data</li>
+<li><code>x</code> - The coordinates in physical space at element interior (quadrature) points</li>
+</ul>
+<p>As with the <code>model</code> attributes, the <code>x</code> attribute is stored as a <a href="https://docs.dask.org/en/stable/array.html">Dask array</a>. To obtain the <code>x</code> and <code>y</code> positions as their own arrays, you can do something like the following,</p>
+<pre><code># Get x and y physical coordinates for all elements and quadrature points
+x = model.geom.x[:,:,:,:,0]
+y = model.geom.y[:,:,:,:,0]
 </code></pre>
 
 
