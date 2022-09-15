@@ -3,9 +3,9 @@ site_description: Documentation for SELF API for Python
 site_author: Fluid Numerics
 site_dir: public
 site_url: ""
-repo_name: GitHub/fluidnumerics/SELF
+repo_name: GitHub/fluidnumerics/SELFPy
 repo_url: https://github.com/fluidnumerics/SELFPy
-edit_uri: edit/main/docs/mkdocs
+edit_uri: edit/main/docs
 
 # Directory where site content is located
 docs_dir: docs
@@ -14,12 +14,29 @@ docs_dir: docs
 nav:
   - Home: index.md
   - GettingStarted:
-    - QuickStart: GettingStarted/QuickStart.md
+    - Quick Start: GettingStarted/QuickStart.md
   - About:
-    - ReleaseNotes: About/ReleaseNotes.md
-    - RoadMap: About/RoadMap.md
+    - Release Notes: About/ReleaseNotes.md
+    - Road Map: About/RoadMap.md
 
-theme: gitbook
+theme: 
+  name: material
+  favicon: assets/images/favicon.png
+  logo: assets/images/logo-fluid-numerics.png
+  palette:
+    - scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+         
+    - scheme: default 
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
 
 markdown_extensions:
   - admonition
