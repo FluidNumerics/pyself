@@ -13,7 +13,7 @@ docs_dir: docs
 # Site navigation 
 nav:
   - Home: index.md
-  - GettingStarted:
+  - Getting Started:
     - Quick Start: GettingStarted/QuickStart.md
     - Installation: GettingStarted/Installation.md
   - About:

@@ -12,8 +12,8 @@ If you'd like to install a more experimental version of pySELF, you can clone th
 
 ```
 git clone https://github.com/fluidnumerics/pyself ~/pyself
-git checkout <branch>
 cd ~/pyself
+git checkout <branch>
 pip install --user . --upgrade
 ```
 
