@@ -15,6 +15,7 @@ nav:
   - Home: index.md
   - GettingStarted:
     - Quick Start: GettingStarted/QuickStart.md
+    - Installation: GettingStarted/Installation.md
   - About:
     - Release Notes: About/ReleaseNotes.md
     - Road Map: About/RoadMap.md

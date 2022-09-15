@@ -8,6 +8,8 @@ pySELF can be installed using pip.
 pip install pyself==0.0.0
 ```
 
+If you'd like to install a non-tagged version, from the `main` branch for example, see [Installation](./Installation.md).
+
 ## Read in SELF data from a file
 Suppose that you have run a simulation with SELF using the `Model2D` class or one of its children (e.g. `LinearShallowWater2D`). The simulation has generated a set of `solution.*.h5` files. In the scenario described here, we're interested in loading in the contents of a file called `solution.example.h5` in the current working directory.
 
