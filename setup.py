@@ -9,7 +9,8 @@ setup(
     author_email='joe@fluidnumerics.com',
     license='Researcher Software License',
     packages=['self'],
-    install_requires=['h5py>=3.7.0'],
+    install_requires=['h5py>=3.7.0',
+                      'dask'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',

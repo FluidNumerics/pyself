@@ -4,7 +4,7 @@
 #import dask_array as da
 
 
-class data:
+class interp:
     def __init__(self):
 
         # Control points for interpolation
@@ -48,5 +48,7 @@ class data:
         else:
             print(f"Error: /quadrature group not found in {hdf5File}.")
             return 1
+
+        return 0
 
 

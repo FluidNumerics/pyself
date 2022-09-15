@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import self.lagrange as lagrange
+import self.geometry as geometry
 import inspect, os.path
 
 # Get full path to examples/
@@ -9,14 +9,14 @@ filename = inspect.getframeinfo(inspect.currentframe()).filename
 path     = os.path.dirname(os.path.abspath(filename))
 
 
-interp = lagrange.interp()
-interp.load(f'{path}/data/solution.h5')
-attr=dir(interp)
+geom = geometry.semquad()
+geom.load(f'{path}/data/solution.h5')
+attr=dir(geom)
 
 print("============================")
-print("lagrangeFromFile\n")
+print("geometryFromFile\n")
 print("============================")
-print(f"Lagrange Object : \n {interp} \n")
-print(f"Lagrange Object Attributes: \n {attr} \n")
-print(f"Lagrange computational coordinates : \n {interp.controlPoints[:]} \n")
+print(f"Geometry Object : \n {geom} \n")
+print(f"Geometry Object Attributes : \n {attr} \n")
+print(f"Geometry physical coordinates : \n {geom.x} \n")
 print("============================")
