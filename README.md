@@ -3,4 +3,4 @@ This package allows you to interface with the Spectral Element Library in Fortra
 
 ## Documentation
 
-Documentation is available online at https://fluidnumerics.github.io/selfpy
+Documentation is available online at https://fluidnumerics.github.io/pyself

@@ -1,10 +1,10 @@
-site_name: SELF for Python
-site_description: Documentation for SELF API for Python
+site_name: Python interface for SELF
+site_description: Documentation for Python interface to SELF
 site_author: Fluid Numerics
 site_dir: public
 site_url: ""
-repo_name: GitHub/fluidnumerics/SELFPy
-repo_url: https://github.com/fluidnumerics/SELFPy
+repo_name: GitHub/fluidnumerics/pyself
+repo_url: https://github.com/fluidnumerics/pyself
 edit_uri: edit/main/docs
 
 # Directory where site content is located
