@@ -42,6 +42,7 @@ class interp:
             self.controlPoints = f['quadrature/xi'] 
             self.dMatrix = f['quadrature/dmatrix'] 
             self.dgMatrix = f['quadrature/dgmatrix']
+            self.bMatrix = f['quadrature/bmatrix']
             self.weights = f['quadrature/weights']
             self.N = self.controlPoints.shape[0]-1 # Polynomial degree is number of quadrature points minus 1
 
