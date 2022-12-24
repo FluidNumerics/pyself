@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyself',
-    version='0.0.0',
+    version='0.1.0',
     description='A python interface for the Spectral Element Library in Fortran',
     url='https://github.com/fluidnumerics/pyself',
     author='Dr. Joe Schoonover',
