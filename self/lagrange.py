@@ -44,6 +44,12 @@ class interp:
             self.dgMatrix = f['quadrature/dgmatrix']
             self.bMatrix = f['quadrature/bmatrix']
             self.weights = f['quadrature/weights']
+            try:
+                self.iMatrix = f['quadrature/imatrix']
+                self.M = self.iMatrix.shape[0]-1
+            except:
+                print("Interpolation matrix not available")
+
             self.N = self.controlPoints.shape[0]-1 # Polynomial degree is number of quadrature points minus 1
 
         else:
