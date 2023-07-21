@@ -10,7 +10,7 @@ path     = os.path.dirname(os.path.abspath(filename))
 
 
 interp = lagrange.interp()
-interp.load(f'{path}/data/solution.h5')
+interp.load(f'{path}/data/2d/solution.h5')
 attr=dir(interp)
 
 print("============================")

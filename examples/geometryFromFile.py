@@ -10,7 +10,7 @@ path     = os.path.dirname(os.path.abspath(filename))
 
 
 geom = geometry.semquad()
-geom.load(f'{path}/data/solution.h5')
+geom.load(f'{path}/data/2d/solution.h5')
 attr=dir(geom)
 
 print("============================")
