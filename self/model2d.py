@@ -38,15 +38,32 @@ class model:
             d = f['state/interior/solutionGradient'] 
             self.solutionGradient = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N,2))
 
-            d = f['state/interior/flux'] 
-            self.flux = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N,2))
+            #d = f['state/interior/flux'] 
+            #self.flux = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N,2))
 
-            d = f['state/interior/fluxDivergence'] 
-            self.fluxDivergence = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N))
+            #d = f['state/interior/fluxDivergence'] 
+            #self.fluxDivergence = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N))
 
         else:
             print(f"Error: /state group not found in {hdf5File}.")
             return 1
+        
+        if "plot" in list(f.keys()):
+            d = f["plot/interior/solution"]
+            nvar = d.shape[1]
+            N = d.shape[2]
+            self.vis_solution = da.from_array(
+                d, chunks=(self.geom.daskChunkSize, nvar, N, N)
+            )
+
+            d = f["plot/interior/x"]
+            nvar = d.shape[1]
+            N = d.shape[2]
+            self.vis_x = da.from_array(d, chunks=(self.geom.daskChunkSize, nvar, N, N, 2))
+
+        else:
+            print(f"Warning: /plot group not found in {hdf5File}.")
+
 
         return 0 
 
