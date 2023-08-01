@@ -24,11 +24,11 @@ print(f"Model1D Interpolant : \n {model.geom.interp} \n")
 print(f"Quadrature mesh degree : \n {model.geom.interp.N} \n")
 print(f"Plot mesh degree : \n {model.geom.interp.M} \n")
 print(f"Model1D Solution (Vis): \n {model.vis_solution} \n")
-print(f"Model1D Geometry (Vis) : \n {model.vis_x} \n")
+print(f"Model1D Geometry (Vis) : \n {model.geom.vis_x} \n")
 print("============================")
 
 
 
 # Interpolate from quadrature mesh to plot mesh
-plt.plot( model.vis_x.flatten(), model.vis_solution.flatten() )
+plt.plot( model.geom.vis_x.flatten(), model.vis_solution.flatten() )
 plt.show()

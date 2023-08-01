@@ -10,7 +10,8 @@ setup(
     license='Researcher Software License',
     packages=['self'],
     install_requires=['h5py>=3.7.0',
-                      'dask'],
+                      'dask',
+                      'pyvista'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',

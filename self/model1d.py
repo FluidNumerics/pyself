@@ -8,19 +8,9 @@ import self.geometry as geometry
 
 class model:
     def __init__(self):
-        self.solution = None
-        self.solutionGradient = None
-        self.velocity = None
-        self.compVelocity = None
-        self.flux = None
-        self.source = None
-        self.fluxDivergence = None
-        self.dSdt = None
-        self.workSol = None
-        self.prevSol = None
-        self.mesh = None
-        self.vis_solution = None
-        self.vis_x = None
+        self.solution = None # Dask data
+        self.pvdata = None # Pyvista data
+        self.varnames = None
         self.geom = geometry.semline()
 
     def load(self, hdf5File):
@@ -29,43 +19,31 @@ class model:
         import dask.array as da
 
         self.geom.load(hdf5File)
-
+        
         f = h5py.File(hdf5File, "r")
+        self.varnames = []
+        if 'metadata' in list(f.keys()):
+            d = f['metadata/vars']
+            for k in d.keys():
+                self.varnames.append(d[k][0].decode())
+
         if "state" in list(f.keys()):
-            d = f["state/interior/solution"]
+            d = f["state/solution/interior"]
             nvar = d.shape[1]
             N = d.shape[2]
             self.solution = da.from_array(d, chunks=(self.geom.daskChunkSize, nvar, N))
-
-            d = f["state/interior/solutionGradient"]
-            self.solutionGradient = da.from_array(
-                d, chunks=(self.geom.daskChunkSize, nvar, N)
-            )
-
-            d = f["state/interior/flux"]
-            self.flux = da.from_array(d, chunks=(self.geom.daskChunkSize, nvar, N))
-
-            d = f["state/interior/fluxDivergence"]
-            self.fluxDivergence = da.from_array(
-                d, chunks=(self.geom.daskChunkSize, nvar, N)
-            )
 
         else:
             print(f"Error: /state group not found in {hdf5File}.")
             return 1
 
         if "plot" in list(f.keys()):
-            d = f["plot/interior/solution"]
+            d = f["plot/state/solution/interior"]
             nvar = d.shape[1]
             N = d.shape[2]
             self.vis_solution = da.from_array(
                 d, chunks=(self.geom.daskChunkSize, nvar, N)
             )
-
-            d = f["plot/interior/x"]
-            nvar = d.shape[1]
-            N = d.shape[2]
-            self.vis_x = da.from_array(d, chunks=(self.geom.daskChunkSize, nvar, N))
 
         else:
             print(f"Warning: /plot group not found in {hdf5File}.")

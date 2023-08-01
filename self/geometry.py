@@ -10,9 +10,9 @@ class semline:
         self.interp = lagrange.interp()
         self.nElem = 0 # Number of elements
         self.x = None # physical coordinates at quadrature points
-        self.dxds = None # Covariant basis vectors at quadrature points
-        self.dsdx = None # Contravariant basis vectors at quadrature points
-        self.J = None # Jacobian at quadrature points
+        # self.dxds = None # Covariant basis vectors at quadrature points
+        # self.dsdx = None # Contravariant basis vectors at quadrature points
+        # self.J = None # Jacobian at quadrature points
         self.daskChunkSize=1000 # number of elements per dask chunk
 
     def load(self, hdf5File):
@@ -23,9 +23,11 @@ class semline:
         self.interp.load(hdf5File)
 
         f = h5py.File(hdf5File, 'r')
+
+
         if 'mesh' in list(f.keys()):
 
-            d = f['mesh/interior/x'] 
+            d = f['mesh/coords/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
@@ -33,6 +35,16 @@ class semline:
 
         else:
             print(f"Error: /mesh group not found in {hdf5File}.")
+            return 1
+        
+        if 'plot' in list(f.keys()):
+            d = f['/plot/mesh/coords/interior'] 
+            self.nElem = d.shape[0]
+            nvar = d.shape[1]
+            N = d.shape[2]
+            self.vis_x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N))
+        else:
+            print(f"Error: /plot group not found in {hdf5File}.")
             return 1
 
         return 0
@@ -46,9 +58,9 @@ class semquad:
         self.interp = lagrange.interp()
         self.nElem = 0 # Number of elements
         self.x = None # physical coordinates at quadrature points
-        self.dxds = None # Covariant basis vectors at quadrature points
-        self.dsdx = None # Contravariant basis vectors at quadrature points
-        self.J = None # Jacobian at quadrature points
+        # self.dxds = None # Covariant basis vectors at quadrature points
+        # self.dsdx = None # Contravariant basis vectors at quadrature points
+        # self.J = None # Jacobian at quadrature points
         self.daskChunkSize=1000 # number of elements per dask chunk
 
     def load(self, hdf5File):
@@ -61,7 +73,7 @@ class semquad:
         f = h5py.File(hdf5File, 'r')
         if 'mesh' in list(f.keys()):
 
-            d = f['mesh/interior/x'] 
+            d = f['mesh/coords/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
@@ -69,6 +81,16 @@ class semquad:
 
         else:
             print(f"Error: /mesh group not found in {hdf5File}.")
+            return 1
+        
+        if 'plot' in list(f.keys()):
+            d = f['/plot/mesh/coords/interior'] 
+            self.nElem = d.shape[0]
+            nvar = d.shape[1]
+            N = d.shape[2]
+            self.vis_x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N,N,2))
+        else:
+            print(f"Error: /plot group not found in {hdf5File}.")
             return 1
 
         return 0
