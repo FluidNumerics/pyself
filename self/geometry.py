@@ -25,26 +25,26 @@ class semline:
         f = h5py.File(hdf5File, 'r')
 
 
-        if 'mesh' in list(f.keys()):
+        if 'controlgrid' in list(f.keys()):
 
-            d = f['mesh/coords/interior'] 
+            d = f['controlgrid/geometry/x/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
             self.x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N))
 
         else:
-            print(f"Error: /mesh group not found in {hdf5File}.")
+            print(f"Error: /controlgrid group not found in {hdf5File}.")
             return 1
         
-        if 'plot' in list(f.keys()):
-            d = f['/plot/mesh/coords/interior'] 
+        if 'targetgrid' in list(f.keys()):
+            d = f['targetgrid/geometry/x/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
             self.vis_x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N))
         else:
-            print(f"Error: /plot group not found in {hdf5File}.")
+            print(f"Error: /targetgrid group not found in {hdf5File}.")
             return 1
 
         return 0
@@ -71,26 +71,26 @@ class semquad:
         self.interp.load(hdf5File)
 
         f = h5py.File(hdf5File, 'r')
-        if 'mesh' in list(f.keys()):
+        if 'controlgrid' in list(f.keys()):
 
-            d = f['mesh/coords/interior'] 
+            d = f['controlgrid/geometry/x/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
             self.x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N,N,2))
 
         else:
-            print(f"Error: /mesh group not found in {hdf5File}.")
+            print(f"Error: /controlgrid group not found in {hdf5File}.")
             return 1
         
-        if 'plot' in list(f.keys()):
-            d = f['/plot/mesh/coords/interior'] 
+        if 'targetgrid' in list(f.keys()):
+            d = f['/targetgrid/geometry/x/interior'] 
             self.nElem = d.shape[0]
             nvar = d.shape[1]
             N = d.shape[2]
             self.vis_x = da.from_array(d, chunks=(self.daskChunkSize,nvar,N,N,2))
         else:
-            print(f"Error: /plot group not found in {hdf5File}.")
+            print(f"Error: /targetgrid group not found in {hdf5File}.")
             return 1
 
         return 0

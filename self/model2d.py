@@ -21,24 +21,24 @@ class model:
 
         f = h5py.File(hdf5File, 'r')
         self.varnames = []
-        if 'metadata' in list(f.keys()):
-            d = f['metadata/vars']
-            for k in d.keys():
-                self.varnames.append(d[k][0].decode())
             
-        if 'state' in list(f.keys()):
+        if 'controlgrid' in list(f.keys()):
 
-            d = f['state/solution/interior'] 
+            d = f['controlgrid/solution/interior'] 
             nvar = d.shape[1]
             N = d.shape[2]
             self.solution = da.from_array(d, chunks=(self.geom.daskChunkSize,nvar,N,N))
 
+            d = f['controlgrid/solution/metadata/name']
+            for k in d.keys():
+                self.varnames.append(d[k][0].decode())
+
         else:
-            print(f"Error: /state group not found in {hdf5File}.")
+            print(f"Error: /controlgrid group not found in {hdf5File}.")
             return 1
         
-        if "plot" in list(f.keys()):
-            d = f["plot/state/solution/interior"]
+        if "targetgrid" in list(f.keys()):
+            d = f["targetgrid/solution/interior"]
             nvar = d.shape[1]
             N = d.shape[2]
             self.vis_solution = da.from_array(
@@ -47,7 +47,7 @@ class model:
             # Create pyvista data
             self.generate_pyvista()
         else:
-            print(f"Warning: /plot group not found in {hdf5File}.")
+            print(f"Warning: /targetgrid group not found in {hdf5File}.")
 
         return 0 
 

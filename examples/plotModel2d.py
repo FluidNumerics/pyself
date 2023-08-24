@@ -19,7 +19,7 @@ print(f"Model2D PyVista data : \n {model.pvdata} \n")
 print("============================")
 
 # Use the "active_scalars_name" field to set which field is plotted.
-model.pvdata.point_data.active_scalars_name = "rho"
+model.pvdata.point_data.active_scalars_name = "eta"
 
 print(model.pvdata.point_data)
 
@@ -27,4 +27,4 @@ print(model.pvdata.point_data)
 pl = pv.Plotter()
 pl.add_mesh(model.pvdata)
 pl.camera_position = 'xy'
-pl.show()
+pl.save_graphic('sample.eps')
